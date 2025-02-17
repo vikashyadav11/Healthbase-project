@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="css-style/doctor-dashboard-style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>{{.Name}}</h2>
+        <p>Surgeon</p>
+        <a href="#">Dashboard</a>
+        <!-- <a href="#">Profile</a>
+        <a href="#">Appointments</a>
+        <a href="#">Activities</a>
+        <a href="#">Settings</a> -->
+        <a href="/appointments">Appointments</a>
+        <a href="/profile">Profile</a>
+        <a href="/activities">Activities</a>
+        <a href="/settings">Settings</a>
+        <!-- <a href="#" class="logout">Logout</a> -->
+        <a href="#" class="logout" onclick="logout()">Logout</a>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <h1>Doctor Dashboard</h1>
+            <div class="search-box">
+                <input type="text" placeholder="Search here...">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="info">
+                <h3>Patient Profile</h3>
+                <p>Name : Anmol Singh</p>
+                <p>Patient ID : 21591</p>
+                <!-- <p>Date: 27-09-2024</p>
+                <h3>21575</h3>
+                <p>Anmol Singh</p> -->
+            </div>
+            <div>
+                <button>View</button>
+                <button>Add</button>
+            </div>
+        </div>
+
+        <div class="recent-activity">
+            <h2>Recent Activity</h2>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Patient's Name</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                    <th>Remarks</th>
+                </tr>
+                <tr>
+                    <td>21591</td>
+                    <td>Harshit Kumar</td>
+                    <td>10:40 AM</td>
+                    <td>27-09-2024</td>
+                    <td>Cold and cough</td>
+                </tr>
+                <tr>
+                    <td>21547</td>
+                    <td>Riya</td>
+                    <td>10:10 AM</td>
+                    <td>27-09-2024</td>
+                    <td>Fever</td>
+                </tr>
+                <tr>
+                    <td>21575</td>
+                    <td>Anmol Singh</td>
+                    <td>09:25 AM</td>
+                    <td>27-09-2024</td>
+                    <td>Shoulder pain</td>
+                </tr>
+                <tr>
+                    <td>21353</td>
+                    <td>Sakshi Sharma</td>
+                    <td>09:00 AM</td>
+                    <td>27-09-2024</td>
+                    <td>Diabetes</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- -------------------------------------------------- -->
+    <script>
+        // Logout function
+        function logout() {
+            fetch('/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'same-origin'  // Include cookies for session-based logout
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect to login page
+                    window.location.href = '/login';
+                } else {
+                    alert('Logout failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error logging out:', error);
+                alert('Logout failed');
+            });
+        }
+    </script>
+    <!-- ---------------------------------------------------------- -->
+</body>
+</html>

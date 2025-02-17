@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="css-style/patient-dashboard-style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>{{.Name}}</h2>
+        <p>Patient</p>
+        <a href="#">Dashboard</a>
+        <!-- <a href="#">Profile</a>
+        <a href="#">Appointments</a>
+        <a href="#">Medical Records</a>
+        <a href="#">Settings</a> -->
+        <a href="/appointments">Appointments</a>
+        <a href="/profile">Profile</a>
+        <a href="/medicalRecords">Medical Records</a>
+        <a href="/settings">Settings</a>
+        <!-- <a href="#" class="logout">Logout</a> -->
+        <a href="#" class="logout" onclick="logout()">Logout</a>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <h1>Patient Dashboard</h1>
+            <div class="search-box">
+                <input type="text" placeholder="Search doctors or appointments...">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="info">
+                <h3>Recent Doctor Visit</h3>
+                <p>Name : Dr. Harshit Kumar</p>
+                <p>Doctor ID : 21591</p>
+                <p>Date : 27-09-2024</p>
+            </div>
+            <div>
+                <button>View Details</button>
+            </div>
+        </div>
+
+        <div class="recent-activity">
+            <h2>Recent Appointments</h2>
+            <table>
+                <tr>
+                    <th>Hospital</th>
+                    <th>Doctor's Name</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                    <th>Remarks</th>
+                </tr>
+                <tr>
+                    <td>Hospital 1</td>
+                    <td>Dr. D1</td>
+                    <td>10:40 AM</td>
+                    <td>07-09-2024</td>
+                    <td>Diabetes</td>
+                </tr>
+                <tr>
+                    <td>Hospital 2</td>
+                    <td>Dr. D2</td>
+                    <td>10:10 AM</td>
+                    <td>02-09-2024</td>
+                    <td>Fever</td>
+                </tr>
+                <tr>
+                    <td>Hospital 2</td>
+                    <td>Dr. D3</td>
+                    <td>09:25 AM</td>
+                    <td>19-08-2024</td>
+                    <td>Shoulder pain</td>
+                </tr>
+                <tr>
+                    <td>Hospital 1</td>
+                    <td>Dr. D1</td>
+                    <td>09:00 AM</td>
+                    <td>07-08-2024</td>
+                    <td>Diabetes</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- -------------------------------------------------- -->
+    <script>
+      // Logout function
+      function logout() {
+          fetch('/logout', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              credentials: 'same-origin'  // Include cookies for session-based logout
+          })
+          .then(response => {
+              if (response.ok) {
+                  // Redirect to login page
+                  window.location.href = '/login';
+              } else {
+                  alert('Logout failed');
+              }
+          })
+          .catch(error => {
+              console.error('Error logging out:', error);
+              alert('Logout failed');
+          });
+      }
+  </script>
+  <!-- ---------------------------------------------------------- -->
+</body>
+</html>
